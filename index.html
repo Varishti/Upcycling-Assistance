@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ReMake Upcycling Assistant</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Upload a photo or describe a waste item and get upcycling ideas with steps, costs, selling prices, business tips and environmental impact. Share what you make with the community.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#" aria-label="ReMake home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="1" y="1" width="38" height="38" rx="10" fill="var(--accent)"/>
+        <path d="M12 21a8 8 0 0 1 13.6-5.7" fill="none" stroke="var(--accent-ink)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M24 11.5l2.4 4.2-4.6 1" fill="none" stroke="var(--accent-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M28 19a8 8 0 0 1-13.6 5.7" fill="none" stroke="var(--accent-ink)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M16 28.5l-2.4-4.2 4.6-1" fill="none" stroke="var(--accent-ink)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span><span class="brand-name">ReMake</span><span class="brand-tag" data-i18n="tagline">Upcycling assistant</span></span>
+    </a>
+    <nav class="tabs" aria-label="Sections">
+      <button type="button" class="tab" data-tab="analyse" aria-selected="true"><span data-i18n="tabAnalyse">Find ideas</span></button>
+      <button type="button" class="tab" data-tab="projects" aria-selected="false"><span data-i18n="tabProjects">My projects</span><span class="count" id="countProjects"></span></button>
+      <button type="button" class="tab" data-tab="community" aria-selected="false"><span data-i18n="tabCommunity">Community</span></button>
+      <button type="button" class="tab" data-tab="impact" aria-selected="false"><span data-i18n="tabImpact">Impact</span></button>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">English</button>
+      <button type="button" data-lang="hi" aria-pressed="false">हिन्दी</button>
+      <button type="button" data-lang="pa" aria-pressed="false">ਪੰਜਾਬੀ</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- Find ideas -->
+  <section class="view" id="view-analyse">
+    <div class="workspace">
+      <form class="panel intake" id="itemForm" novalidate>
+        <h2 data-i18n="yourItem">Your item</h2>
+
+        <div class="field">
+          <div class="photo-bar"><span class="label" data-i18n="upload">Upload a photo</span><button type="button" class="link-btn" id="clearPhoto" data-i18n="removePhoto" hidden>Remove</button></div>
+          <label class="drop" id="drop" for="photo">
+            <input id="photo" type="file" accept="image/*">
+            <span class="drop-empty" id="dropEmpty">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 16l4-4 3 3 5-5 4 4"/><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+              <span><b data-i18n="choosePhoto">Choose a photo</b> <span data-i18n="orDrop">or drop it here</span></span>
+            </span>
+            <img id="photoPreview" alt="Your item" hidden>
+          </label>
+          <p class="fine" data-i18n="uploadHint">JPG or PNG. The photo is checked in your browser and never uploaded anywhere.</p>
+        </div>
+
+        <div class="field">
+          <label for="desc" data-i18n="describe">Describe the item</label>
+          <textarea id="desc" rows="2" data-i18n-ph="describePh" placeholder="For example: 3 empty 1-litre cold drink bottles, clean"></textarea>
+        </div>
+
+        <div class="field">
+          <span class="label" data-i18n="material">Material</span>
+          <input type="hidden" id="material" value="auto">
+          <div class="chips" id="chips"></div>
+        </div>
+
+        <div class="detection" id="detection" aria-live="polite" hidden></div>
+
+        <div class="row">
+          <div class="field">
+            <label for="qty" data-i18n="quantity">Quantity</label>
+            <input id="qty" type="number" min="1" max="9999" value="1" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="size" data-i18n="size">Size</label>
+            <select id="size"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="condition" data-i18n="condition">Condition</label>
+          <select id="condition"></select>
+        </div>
+
+        <fieldset>
+          <legend data-i18n="skill">Your skill level</legend>
+          <div class="segmented">
+            <label><input type="radio" name="skill" id="skillBeginner" value="beginner" checked><span data-i18n="beginner">Beginner</span></label>
+            <label><input type="radio" name="skill" id="skillIntermediate" value="intermediate"><span data-i18n="intermediate">Intermediate</span></label>
+            <label><input type="radio" name="skill" id="skillAdvanced" value="advanced"><span data-i18n="advanced">Advanced</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label for="region" data-i18n="region">Prices for</label>
+          <select id="region"></select>
+        </div>
+
+        <button type="submit" class="btn wide" data-i18n="analyse">Find upcycling ideas</button>
+      </form>
+
+      <div class="results" id="results" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- My projects -->
+  <section class="view" id="view-projects" hidden>
+    <div class="view-head">
+      <h2 data-i18n="tabProjects">My projects</h2>
+      <p class="muted" data-i18n="projectsIntro"></p>
+    </div>
+    <div id="projectsBody"></div>
+  </section>
+
+  <!-- Community -->
+  <section class="view" id="view-community" hidden>
+    <div class="view-head">
+      <h2 data-i18n="tabCommunity">Community</h2>
+      <p class="muted" data-i18n="communityIntro"></p>
+      <div class="mode-bar" id="communityMode" aria-live="polite"></div>
+      <div class="mode-bar" id="communitySamples"></div>
+    </div>
+    <div class="community-layout">
+      <form class="panel post-form" id="postForm" novalidate>
+        <h3 data-i18n="shareTitle">Share what you made</h3>
+        <div class="field">
+          <label for="postPhoto" data-i18n="photo">Photo</label>
+          <input id="postPhoto" type="file" accept="image/*">
+        </div>
+        <div class="field">
+          <label for="postCaption" data-i18n="caption">Caption</label>
+          <input id="postCaption" type="text" maxlength="120" data-i18n-ph="captionPh">
+        </div>
+        <div class="field">
+          <label for="postIdea" data-i18n="whichIdea">Which idea?</label>
+          <select id="postIdea"></select>
+        </div>
+        <div class="field">
+          <label for="postName" data-i18n="yourName">Your name (optional)</label>
+          <input id="postName" type="text" maxlength="40" data-i18n-ph="namePh">
+        </div>
+        <button type="submit" class="btn" id="postSubmit" data-i18n="share">Share</button>
+      </form>
+      <div class="feed">
+        <div class="filters" id="communityFilters"></div>
+        <div id="communityGrid"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact -->
+  <section class="view" id="view-impact" hidden>
+    <div class="view-head">
+      <h2 data-i18n="tabImpact">Impact</h2>
+      <p class="muted" data-i18n="impactIntro"></p>
+      <div class="mode-bar" id="impactSamples"></div>
+    </div>
+    <div id="impactBody"></div>
+  </section>
+
+  <footer class="foot">
+    <span data-i18n="footer1"></span>
+    <span data-i18n="footer2"></span>
+  </footer>
+</main>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="js/config.js"></script>
+<script src="js/data.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/sample-data.js"></script>
+<script src="js/community.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
