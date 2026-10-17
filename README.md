@@ -1,8 +1,8 @@
-# ReMake: Upcycling Assistant
+# WasteWise: Upcycling Assistant
 
 A web prototype for the group project **"Upcycling Waste Materials into Useful Products"**.
 
-Upload a photo of a waste item or describe it in a sentence. ReMake recognises the material and suggests upcycling ideas with:
+Upload a photo of a waste item or describe it in a sentence. WasteWise recognises the material and suggests upcycling ideas with:
 
 - step-by-step instructions and the tools you need
 - a cost breakdown, local selling price and profit estimate

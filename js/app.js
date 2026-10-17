@@ -1,4 +1,4 @@
-/* ReMake – upcycling assistant
+/* WasteWise – upcycling assistant
  * Runs fully in the browser. Photo recognition uses MobileNet (TensorFlow.js),
  * loaded only when a photo is added. Everything else uses the knowledge base in
  * data.js, so the app still works when the model can't load.
@@ -478,7 +478,7 @@
     L.push("", t("safety").toUpperCase());
     idea.safety.forEach(function (s) { L.push("- " + s); });
     L.push("", t("business").toUpperCase(), t("whoBuys") + ": " + idea.buyers, t("whereSell") + ": " + idea.channels.join("; "), t("grow") + ": " + idea.scale);
-    L.push("", t("diverted") + ": " + kg(m.kgBatch), t("ifThrown") + " " + mat.fate, "", "ReMake");
+    L.push("", t("diverted") + ": " + kg(m.kgBatch), t("ifThrown") + " " + mat.fate, "", "WasteWise");
     return L.join("\n");
   }
 

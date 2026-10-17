@@ -110,7 +110,7 @@ window.REMAKE_I18N = {
     impactSampleNote: "Includes sample projects from a demo dataset (June–October 2026). Turn off to see only your own.",
     byMonth: "Waste diverted per month", recent: "Recent projects", date: "Date", ideaCol: "Idea",
 
-    footer1: "ReMake prototype · Upcycling Waste Materials into Useful Products",
+    footer1: "WasteWise prototype · Upcycling Waste Materials into Useful Products",
     footer2: "Prices and weights are estimates. Check local rates before selling."
   },
 
@@ -220,7 +220,7 @@ window.REMAKE_I18N = {
     impactSampleNote: "इसमें डेमो डेटा के नमूना प्रोजेक्ट (जून–अक्टूबर 2026) शामिल हैं। सिर्फ़ अपने देखने के लिए बंद करें।",
     byMonth: "हर महीने बचाया गया कचरा", recent: "हाल के प्रोजेक्ट", date: "तारीख़", ideaCol: "आइडिया",
 
-    footer1: "ReMake प्रोटोटाइप · कचरे से उपयोगी उत्पाद (अपसाइक्लिंग)",
+    footer1: "WasteWise प्रोटोटाइप · कचरे से उपयोगी उत्पाद (अपसाइक्लिंग)",
     footer2: "क़ीमतें और वज़न अनुमानित हैं। बेचने से पहले स्थानीय दाम जाँचें।"
   },
 
@@ -330,7 +330,7 @@ window.REMAKE_I18N = {
     impactSampleNote: "ਇਸ ਵਿੱਚ ਡੈਮੋ ਡਾਟਾ ਦੇ ਨਮੂਨਾ ਪ੍ਰੋਜੈਕਟ (ਜੂਨ–ਅਕਤੂਬਰ 2026) ਸ਼ਾਮਲ ਹਨ। ਸਿਰਫ਼ ਆਪਣੇ ਦੇਖਣ ਲਈ ਬੰਦ ਕਰੋ।",
     byMonth: "ਹਰ ਮਹੀਨੇ ਬਚਾਇਆ ਕੂੜਾ", recent: "ਹਾਲੀਆ ਪ੍ਰੋਜੈਕਟ", date: "ਤਾਰੀਖ਼", ideaCol: "ਆਈਡੀਆ",
 
-    footer1: "ReMake ਪ੍ਰੋਟੋਟਾਈਪ · ਕੂੜੇ ਤੋਂ ਲਾਭਦਾਇਕ ਉਤਪਾਦ (ਅਪਸਾਈਕਲਿੰਗ)",
+    footer1: "WasteWise ਪ੍ਰੋਟੋਟਾਈਪ · ਕੂੜੇ ਤੋਂ ਲਾਭਦਾਇਕ ਉਤਪਾਦ (ਅਪਸਾਈਕਲਿੰਗ)",
     footer2: "ਕੀਮਤਾਂ ਅਤੇ ਭਾਰ ਅੰਦਾਜ਼ਨ ਹਨ। ਵੇਚਣ ਤੋਂ ਪਹਿਲਾਂ ਸਥਾਨਕ ਭਾਅ ਜਾਂਚੋ।"
   }
 };
